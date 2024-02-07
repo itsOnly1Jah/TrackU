@@ -12,9 +12,9 @@ trackers = [
 ]
 
 
-@app.route("/list")
+@app.route("/table")
 def item():
-    return render_template('list.html', items=db_entries)
+    return render_template('table.html', items=db_entries)
 
 
 @app.route("/chart")

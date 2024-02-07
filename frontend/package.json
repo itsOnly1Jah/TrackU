@@ -2,7 +2,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server.js && npx tailwindcss -i src/base/styles.css -o src/base/tailwind.css --watch"
+    "dev": "nodemon server.js && npx tailwindcss -i src/css/styles.css -o src/css/tailwind.css --watch"
   },
   "dependencies": {
     "axios": "^1.6.7",

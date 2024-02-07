@@ -14,8 +14,8 @@ app.get('/chart', (req, res) => {
   .then((error) => console.log(error));
 });
 
-app.get('/list', (req, res) => {
-  axios.get('http://127.0.0.1:5000/list')
+app.get('/table', (req, res) => {
+  axios.get('http://127.0.0.1:5000/table')
   .then((flask) => {
     res.send(flask.data)
   })
