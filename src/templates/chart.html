@@ -1,0 +1,20 @@
+<canvas id="chart">Chart</canvas>
+<script>
+  const ctx = document.getElementById('chart');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [
+      {% for item in items %}
+        {
+          label: '{{ item["name"] }}',
+          data: {{ item["value"] }}
+        },
+      {% endfor %}
+      ]
+    }
+  });
+
+</script>
