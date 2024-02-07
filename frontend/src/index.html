@@ -10,6 +10,9 @@
   </div>
   <div class="flex flex-col h-svh">
     <div class="h-4/6 content-center bg-slate-800" hx-get="/chart" hx-swap="innerHTML" hx-trigger="load">Chart</div>
-    <div hx-get="/list" hx-trigger="load">List</div>
+    <div>
+      <table class="w-full text-center" hx-get="/list" hx-trigger="load"></table>
+    </div>
   </div>
+
 </html>
