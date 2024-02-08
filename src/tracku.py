@@ -24,14 +24,44 @@ db_entries = [
 ]
 
 
+def tracker_color(tracker_name):
+    match tracker_name:
+        case "Amazon":
+            return "bg-cyan-500"
+        case "Ebay":
+            return "bg-violet-500"
+        case "Best Buy":
+            return "bg-amber-400"
+        case _:
+            return "bg-zinc-400"
+
+
+def map_items(fn, items):
+    return map(fn, items)
+
+
+def wrap(el, item, options=""):
+    return f'<{el} {options}">{item}</{el}>'
+
+
+def tracker_button(tracker):
+    return wrap('button', tracker, f'class="{tracker_color(tracker)} py-1 px-3 text-white text-sm font-semibold rounded-full shadow focus:outline-none')
+
+
 @app.route("/")
 def index():
     return render_template('index.html')
 
 
+@app.route("/click", methods=['POST'])
+def click():
+    print("hello")
+    return {}, 200
+
+
 @app.route("/table")
 def table():
-    return render_template('table.html', items=db_entries)
+    return render_template('table.html', map_items=map_items, items=db_entries, tracker_button=tracker_button)
 
 
 @app.route("/chart")
