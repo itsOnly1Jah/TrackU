@@ -17,7 +17,7 @@ db_entries = [
 
 
 @app.route("/table")
-def item():
+def table():
     return render_template('table.html', items=db_entries)
 
 
