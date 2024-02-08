@@ -5,9 +5,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="./css/tailwind.css" rel="stylesheet">
   </head>
-  <div class="content-center">
-    <h1 class="text-center">TrackU</h1>
-  </div>
+  <nav class="bg-white border-gray-200 dark:bg-gray-900">
+    <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TrackU</span>
+    </div>
+  </nav>
   <div class="flex flex-col h-svh">
     <div class="h-4/6 bg-slate-800 grid place-items-center">
       <canvas id="chart" hx-get="/chart" hx-trigger="load"></canvas>
