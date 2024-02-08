@@ -6,13 +6,21 @@
     data: {
       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
       datasets: [
-      {% for item in items %}
+      {% for tracker in item["tracker"].keys()|sort %}
         {
-          label: '{{ item["name"] }}',
-          data: {{ item["value"] }}
+          label: '{{ tracker }}',
+          data: {{ item["tracker"][tracker] }}
         },
       {% endfor %}
       ]
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: '{{ item["name"] }}'
+        }
+      }
     }
   });
 </script>
