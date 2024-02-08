@@ -9,7 +9,9 @@
     <h1 class="text-center">TrackU</h1>
   </div>
   <div class="flex flex-col h-svh">
-    <div class="h-4/6 content-center bg-slate-800" hx-get="/chart" hx-swap="innerHTML" hx-trigger="load">Chart</div>
+    <div class="h-4/6 bg-slate-800 grid place-items-center">
+      <canvas id="chart" hx-get="/chart" hx-trigger="load"></canvas>
+    </div>
     <div>
       <table class="w-full text-center" hx-get="/table" hx-trigger="load"></table>
     </div>
