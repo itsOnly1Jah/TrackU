@@ -53,12 +53,6 @@ def index():
     return render_template('index.html')
 
 
-@app.route("/click", methods=['POST'])
-def click():
-    print("hello")
-    return {}, 200
-
-
 @app.route("/table")
 def table():
     return render_template('table.html', map_items=map_items, items=db_entries, tracker_button=tracker_button)
