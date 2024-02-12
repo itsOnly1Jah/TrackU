@@ -69,4 +69,4 @@ def modal_show():
 
 @app.route("/modal-hide")
 def modal_hide():
-    return '<div class="hidden">'
+    return '<div class="hidden"></div>'
