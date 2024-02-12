@@ -1,1 +1,1 @@
-from .endpoints import product
+from api.endpoints import product

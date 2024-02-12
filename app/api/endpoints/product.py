@@ -1,7 +1,7 @@
 from flask import jsonify, request
 
-from ...main import app
-from ..utils import senseless_print
+from main import app
+from api.utils import senseless_print
 
 
 @app.route("/product", methods=['GET', 'POST'])

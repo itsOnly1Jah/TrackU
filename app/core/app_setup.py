@@ -1,5 +1,5 @@
-from ..api import api
-from ..main import app
+from api import api
+from main import app
 
 from flask import render_template
 from flask_assets import Bundle, Environment
