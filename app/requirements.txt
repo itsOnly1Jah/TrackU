@@ -9,6 +9,7 @@ MarkupSafe==2.1.5
 psycopg==3.1.18
 psycopg-binary==3.1.18
 pytailwindcss==0.2.0
+python-dotenv==1.0.1
 typing_extensions==4.9.0
 webassets==2.0
 Werkzeug==3.0.1
