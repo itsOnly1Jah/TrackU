@@ -23,6 +23,20 @@ db_entries = [
 ]
 
 
+def int_db():
+    from os import getenv
+    from dotenv import load_dotenv
+    from psycopg import connect
+    load_dotenv('.env')
+    conn = connect(host=getenv('pgserver'), dbname='tracku', user='postgres', password=getenv('pgpassword'))
+    cursor = conn.cursor()
+    cursor.execute("CREATE TABLE IF NOT EXISTS api (name text PRIMARY KEY, key text)")
+    cursor.execute("CREATE TABLE IF NOT EXISTS products (id uuid PRIMARY KEY, name text, trackers jsonb)")
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+
 def tracker_color(tracker_name):
     match tracker_name:
         case "Amazon":
@@ -45,6 +59,9 @@ def wrap(el, item, options=""):
 
 def tracker_button(tracker):
     return wrap('button', tracker, f'class="{tracker_color(tracker)} py-1 px-3 text-white text-sm font-semibold rounded-full shadow focus:outline-none')
+
+
+int_db()
 
 
 @app.route("/")
