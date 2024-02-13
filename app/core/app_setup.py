@@ -1,5 +1,5 @@
-from ..api import api
-from ..main import app
+from api import api
+from main import app
 
 from flask import render_template
 from flask_assets import Bundle, Environment
@@ -21,6 +21,20 @@ db_entries = [
     {"name": "XBOX", "tracker": trackers},
     {"name": "PS5", "tracker": trackers}
 ]
+
+
+def int_db():
+    from os import getenv
+    from dotenv import load_dotenv
+    from psycopg import connect
+    load_dotenv('.env')
+    conn = connect(host=getenv('pgserver'), dbname='tracku', user='postgres', password=getenv('pgpassword'))
+    cursor = conn.cursor()
+    cursor.execute("CREATE TABLE IF NOT EXISTS api (name text PRIMARY KEY, key text)")
+    cursor.execute("CREATE TABLE IF NOT EXISTS products (id uuid PRIMARY KEY, name text, trackers jsonb)")
+    conn.commit()
+    cursor.close()
+    conn.close()
 
 
 def tracker_color(tracker_name):
@@ -47,6 +61,9 @@ def tracker_button(tracker):
     return wrap('button', tracker, f'class="{tracker_color(tracker)} py-1 px-3 text-white text-sm font-semibold rounded-full shadow focus:outline-none')
 
 
+int_db()
+
+
 @app.route("/")
 def index():
     return render_template('index.html')
@@ -69,4 +86,4 @@ def modal_show():
 
 @app.route("/modal-hide")
 def modal_hide():
-    return '<div class="hidden">'
+    return '<div class="hidden"></div>'

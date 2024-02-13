@@ -1,7 +1,12 @@
 from flask import jsonify, request
 
-from ...main import app
-from ..utils import senseless_print
+from main import app
+from api.utils import senseless_print
+
+from os import getenv
+from dotenv import load_dotenv
+
+load_dotenv('.env')
 
 
 @app.route("/product", methods=['GET', 'POST'])
@@ -13,9 +18,25 @@ def product():
     return f'<h1> The Language is : {args} </h1>'
 
 
-def add_tracker(self, tracker_name, link):
-    self.trackers[tracker_name] = {"product_link": link, "prices": []}
-    return {tracker_name}
+@app.route("/add-tracker", methods=['POST'])
+def add_tracker():
+    from json import dumps
+    from uuid import uuid4
+    from psycopg import connect
+    conn = connect(host=getenv('pgserver'), dbname='tracku', user='postgres', password=getenv('pgpassword'))
+    cursor = conn.cursor()
+    element = {
+        "id": str(uuid4()),
+        "name": request.form["product_name"],
+        "trackers": {
+            request.form["tracker"]: request.form["product_link"]
+        }
+    }
+    cursor.execute("INSERT INTO products (id, name, trackers) VALUES (%s, %s, %s)", (element["id"], element["name"], dumps(element["trackers"])))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return ('', 204)
 
 
 def set_low(self):
