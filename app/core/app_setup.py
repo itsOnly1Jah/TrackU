@@ -71,7 +71,19 @@ def index():
 
 @app.route("/table")
 def table():
-    return render_template('table.html', map_items=map_items, items=db_entries, tracker_button=tracker_button)
+    from os import getenv
+    from dotenv import load_dotenv
+    from psycopg import connect
+    load_dotenv('.env')
+    conn = connect(host=getenv('pgserver'), dbname='tracku', user='postgres', password=getenv('pgpassword'))
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM products")
+    products = []
+    for product in cursor.fetchall():
+        products.append({"id": product[0], "name": product[1], "trackers": product[2]})
+    cursor.close()
+    conn.close()
+    return render_template('table.html', map_items=map_items, items=products, tracker_button=tracker_button)
 
 
 @app.route("/chart")

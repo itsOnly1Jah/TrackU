@@ -29,7 +29,9 @@ def add_tracker():
         "id": str(uuid4()),
         "name": request.form["product_name"],
         "trackers": {
-            request.form["tracker"]: request.form["product_link"]
+            "amazon": request.form["amazon"],
+            "bestbuy": request.form["bestbuy"],
+            "ebay": request.form["ebay"]
         }
     }
     cursor.execute("INSERT INTO products (id, name, trackers) VALUES (%s, %s, %s)", (element["id"], element["name"], dumps(element["trackers"])))
