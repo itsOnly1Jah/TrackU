@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     "./templates/**/*.{html,js}",
-    "./tracku.py",
+    "./core/app_setup.py",
   ],
   theme: {
     extend: {},

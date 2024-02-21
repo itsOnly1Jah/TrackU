@@ -39,11 +39,11 @@ def int_db():
 
 def tracker_color(tracker_name):
     match tracker_name:
-        case "Amazon":
+        case "amazon":
             return "bg-cyan-500"
-        case "Ebay":
-            return "bg-violet-500"
-        case "Best Buy":
+        case "ebay":
+            return "bg-rose-700"
+        case "bestbuy":
             return "bg-amber-400"
         case _:
             return "bg-zinc-400"
@@ -58,7 +58,11 @@ def wrap(el, item, options=""):
 
 
 def tracker_button(tracker):
-    return wrap('button', tracker, f'class="{tracker_color(tracker)} py-1 px-3 text-white text-sm font-semibold rounded-full shadow focus:outline-none')
+
+    return wrap('a',
+                wrap('button', tracker[0], f'class="{tracker_color(tracker[0])} py-1 px-3 text-white text-sm font-semibold rounded-full shadow focus:outline-none'),
+                f'href="{tracker[1]}" target="_blank"'
+                )
 
 
 int_db()
