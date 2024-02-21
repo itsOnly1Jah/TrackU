@@ -39,11 +39,11 @@ def int_db():
 
 def tracker_color(tracker_name):
     match tracker_name:
-        case "Amazon":
+        case "amazon":
             return "bg-cyan-500"
-        case "Ebay":
-            return "bg-violet-500"
-        case "Best Buy":
+        case "ebay":
+            return "bg-rose-700"
+        case "bestbuy":
             return "bg-amber-400"
         case _:
             return "bg-zinc-400"
